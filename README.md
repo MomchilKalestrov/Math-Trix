@@ -13,3 +13,6 @@ You will see P1 (player 1) on the top left corner and P2 (player 2) on the botto
 
 ### How to win
 The point of the game is to get the most ammount of points by using the math operations in the cells. The game ends when either player has no cells to move into.
+
+## Copyright
+...
