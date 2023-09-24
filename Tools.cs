@@ -9,8 +9,6 @@ namespace MathTrix
         // Gets the best outcome for the 2nd player. The method is used as an AI opponent.
         private Point GetBestOutcome()
         {
-            Console.WriteLine("A thick fog is covering my view. I can only see so far...");
-
             _maxX = Convert.ToUInt16(Math.Abs(_p2X - 1));
             _maxY = Convert.ToUInt16(Math.Abs(_p2Y - 1));
 
@@ -20,9 +18,7 @@ namespace MathTrix
                     {
                         if (i == _p2X && j == _p2Y)
                             continue;
-
-                        Console.WriteLine($"{i} {j} {_tiles[i, j].BotCalculate(_p2Score)}");
-
+                        
                         if (_max <= _tiles[i, j].BotCalculate(_p2Score) && _tiles[i, j].Enabled)
                         {
                             _maxX = Convert.ToUInt16(i);
@@ -31,9 +27,6 @@ namespace MathTrix
                         }
                     }
                     catch { }
-
-            Console.WriteLine("The fog has cleared. I can see further now...");
-
             return new Point(_maxX, _maxY);
         }
 
@@ -50,64 +43,15 @@ namespace MathTrix
         // Checks if there are any available cells to move into.
         private Boolean CheckForCells()
         {
+            Boolean availableCells = false;
             Tile tile = _turn ? _tiles[_p1X, _p1Y] : _tiles[_p2X, _p2Y];
-            try
-            {
-                if (_tiles[tile.X + 1, tile.Y + 1].Enabled)
-                    return true;
-            }
-            catch { }
 
-            try
-            {
-                if (_tiles[tile.X - 1, tile.Y + 1].Enabled)
-                    return true;
-            }
-            catch { }
+            for (Int32 x = (Int32)(tile.X - 1); x < 2 + tile.X; ++x)
+                for (Int32 y = (Int32)(tile.Y - 1); y < 2 + tile.Y; ++y)
+                    try { availableCells = availableCells || _tiles[x, y].Enabled;}
+                    catch { availableCells = availableCells || false; }
 
-            try
-            {
-                if (_tiles[tile.X + 1, tile.Y - 1].Enabled)
-                    return true;
-            }
-            catch { }
-
-            try
-            {
-                if (_tiles[tile.X - 1, tile.Y - 1].Enabled)
-                    return true;
-            }
-            catch { }
-
-            try
-            {
-                if (_tiles[tile.X, tile.Y + 1].Enabled)
-                    return true;
-            }
-            catch { }
-
-            try
-            {
-                if (_tiles[tile.X, tile.Y - 1].Enabled)
-                    return true;
-            }
-            catch { }
-
-            try
-            {
-                if (_tiles[tile.X + 1, tile.Y].Enabled)
-                    return true;
-            }
-            catch { }
-
-            try
-            {
-                if (_tiles[tile.X - 1, tile.Y].Enabled)
-                    return true;
-            }
-            catch { }
-
-            return false;
+            return availableCells;
         }
 
         // Ends the game and declares a winner.
