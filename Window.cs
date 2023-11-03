@@ -107,7 +107,7 @@ namespace MathTrix
 
             // Sets the player's starting locations.
             _p1X = 0;
-            _p1X = 0;
+            _p1Y = 0;
             _tiles[_p1X, _p1Y].Enabled = false;
             _tiles[_p1X, _p1Y].Text = "P1";
             _p1Score = 0;
