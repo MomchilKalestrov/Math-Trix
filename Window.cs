@@ -106,6 +106,7 @@ namespace MathTrix
                 }
 
             // Sets the player's starting locations.
+            p1ScoreLabel.Text = "P1: 0";
             _p1X = 0;
             _p1Y = 0;
             _tiles[_p1X, _p1Y].Enabled = false;
@@ -113,7 +114,8 @@ namespace MathTrix
             _p1Score = 0;
             _tiles[_p1X, _p1Y].ForeColor = _p1Forecolour;
             _tiles[_p1X, _p1Y].BackColor = _p1Backcolour;
-
+            
+            p2ScoreLabel.Text = "P2: 0";
             _p2X = Convert.ToUInt16(_tiles.GetLength(0) - 1);
             _p2Y = Convert.ToUInt16(_tiles.GetLength(1) - 1);
             _tiles[_p2X, _p2Y].Enabled = false;
