@@ -100,7 +100,7 @@ namespace MathTrix
                     _tiles[i, j].Size = new Size(_btnWidth, _btnHeight);
                     _tiles[i, j].Location = new Point(_btnWidth * i, _btnHeight * j);
                     _tiles[i, j].Click += new EventHandler(ButtonClicked);
-                    _tiles[i, j].Text = $"{_tiles[i, j].Equasion} {_tiles[i, j].Number}";
+                    _tiles[i, j].Text = $"{_tiles[i, j].Operation} {_tiles[i, j].Number}";
                     _tiles[i, j].Font = new Font("Segoe UI", Math.Min(_btnWidth, _btnHeight) / 4);
                     mainContainer.Panel2.Controls.Add(_tiles[i, j]);
                 }
