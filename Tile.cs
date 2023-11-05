@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using System;
 
 namespace MathTrix
@@ -18,28 +18,13 @@ namespace MathTrix
             _y = y;
 
             _number = (UInt16)rand.Next(from, to);
-
-            switch(rand.Next(0, 3))
-            {
-                case 0:
-                    _equasion = EquasionList.Add;
-                    break;
-                case 1:
-                    _equasion = EquasionList.Remove;
-                    break;
-                case 2:
-                    _equasion = EquasionList.Multiply;
-                    break;
-                case 3:
-                    if (_number != 0)
-                        _equasion = EquasionList.Divide;
-                    else
-                        _equasion = EquasionList.Multiply;
-                    break;
-            }
+            Byte eq = Convert.ToByte(rand.Next(0, 3));
+            _operation = (OperationList) eq;
+            if (_number == 0 && eq == 3)
+                 _operation = OperationList.Multiply;
         }
 
-        public enum EquasionList
+        public enum OperationList
         {
             Add = 0,
             Remove = 1,
@@ -47,16 +32,16 @@ namespace MathTrix
             Divide = 3
         }
 
-        public char Equasion
+        public char Operation
         {
             get
             {
                 char[] types = { '+', '-', '*', '/'};
-                return types[(Byte)_equasion];
+                return types[(Byte)_operation];
             }
         }
 
-        private EquasionList _equasion;
+        private OperationList _operation;
 
         public UInt16 Number
         {
@@ -94,18 +79,18 @@ namespace MathTrix
 
         public void Calculate(ref Int32 score)
         {
-            switch (_equasion)
+            switch (_operation)
             {
-                case EquasionList.Add:
+                case OperationList.Add:
                     score += _number;
                     break;
-                case EquasionList.Remove:
+                case OperationList.Remove:
                     score -= _number;
                     break;
-                case EquasionList.Multiply:
+                case OperationList.Multiply:
                     score *= _number;
                     break;
-                case EquasionList.Divide:
+                case OperationList.Divide:
                     score /= _number;
                     break;
             }
@@ -113,15 +98,15 @@ namespace MathTrix
 
         public Int32 BotCalculate(Int32 score)
         {
-            switch (_equasion)
+            switch (_operation)
             {
-                case EquasionList.Add:
+                case OperationList.Add:
                     return score + _number;
-                case EquasionList.Remove:
+                case OperationList.Remove:
                     return score - _number;
-                case EquasionList.Multiply:
+                case OperationList.Multiply:
                     return score * _number;
-                case EquasionList.Divide:
+                case OperationList.Divide:
                     return score / _number;
             }
             return -1;
