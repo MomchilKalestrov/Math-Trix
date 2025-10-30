@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace MathTrix;
 
-internal class Tile : Button
+public class Tile : Button
 {
     // This is the absolute same as a normal button, except for the Enum and Int16, and calculate.
 

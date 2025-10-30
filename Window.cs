@@ -7,34 +7,34 @@ namespace MathTrix
     public partial class Window : Form
     {
         // Board data.
-        private UInt16 _columns = 4;
-        private UInt16 _rows = 4;
+        private ushort _columns = 4;
+        private ushort _rows = 4;
 
-        private UInt16 _btnWidth;
-        private UInt16 _btnHeight;
+        private ushort _btnWidth;
+        private ushort _btnHeight;
 
         // Player data.
-        private Boolean _turn = true;
-        private UInt16 _p1X = 0;
-        private UInt16 _p1Y = 0;
-        private Int32 _p1Score = 0;
+        private bool _turn = true;
+        private ushort _p1X = 0;
+        private ushort _p1Y = 0;
+        private int _p1Score = 0;
         private Color _p1Backcolour = Color.White;
         private Color _p1Forecolour = Color.Black;
 
-        private UInt16 _p2X = 0;
-        private UInt16 _p2Y = 0;
-        private Int32 _p2Score = 0;
+        private ushort _p2X = 0;
+        private ushort _p2Y = 0;
+        private int _p2Score = 0;
         private Color _p2Backcolour = Color.White;
         private Color _p2Forecolour = Color.Black;
 
         // Bot data.
-        private Int32 _max = Int32.MinValue;
-        private Int32 _maxX = -1;
-        private Int32 _maxY = -1;
-        private Boolean _botOpponent = false;
+        private int _max = int.MinValue;
+        private int _maxX = -1;
+        private int _maxY = -1;
+        private bool _botOpponent = false;
 
         // Misc
-        private Boolean _boardGenerated = false;
+        private bool _boardGenerated = false;
         private Tile[,] _tiles;
 
         public Window()
@@ -48,8 +48,8 @@ namespace MathTrix
             if (!_boardGenerated)
                 return;
 
-            _btnWidth = (UInt16)(mainContainer.Panel2.Width / _columns);
-            _btnHeight = (UInt16)(mainContainer.Panel2.Height / _rows);
+            _btnWidth = (ushort)(mainContainer.Panel2.Width / _columns);
+            _btnHeight = (ushort)(mainContainer.Panel2.Height / _rows);
 
             for (int i = 0; i < _columns; i++)
                 for (int j = 0; j < _rows; j++)
@@ -86,15 +86,15 @@ namespace MathTrix
             _boardGenerated = true;
 
             // Calculates the button dimentions.
-            _btnWidth = (UInt16)(mainContainer.Panel2.Width / _columns);
-            _btnHeight = (UInt16)(mainContainer.Panel2.Height / _rows);
+            _btnWidth = (ushort)(mainContainer.Panel2.Width / _columns);
+            _btnHeight = (ushort)(mainContainer.Panel2.Height / _rows);
 
             // Creates an instance of an array of the "Tile" Control. It is used as a playing field/ board.
             _tiles = new Tile[_columns, _rows];
 
             // Sets the default paramaters for the tiles.
-            for (UInt16 i = 0; i < _columns; i++)
-                for (UInt16 j = 0; j < _rows; j++)
+            for (ushort i = 0; i < _columns; i++)
+                for (ushort j = 0; j < _rows; j++)
                 {
                     _tiles[i, j] = new Tile(_columns, _rows, i, j);
                     _tiles[i, j].Size = new Size(_btnWidth, _btnHeight);
@@ -143,8 +143,8 @@ namespace MathTrix
             if (_turn)
             {
                 // Gets the length between the player's location and the current Tile location.
-                UInt16 xDiff = Convert.ToUInt16(Math.Abs(_p1X - tile.X));
-                UInt16 yDiff = Convert.ToUInt16(Math.Abs(_p1Y - tile.Y));
+                ushort xDiff = Convert.ToUInt16(Math.Abs(_p1X - tile.X));
+                ushort yDiff = Convert.ToUInt16(Math.Abs(_p1Y - tile.Y));
 
                 // Checks if the player's Tile is next to the current Tile and if the current Tile hasn't been used.
                 if (xDiff <= 1 && yDiff <= 1 && tile.Enabled)
@@ -178,8 +178,8 @@ namespace MathTrix
             else
             {
                 // Gets the length between the player's location and the current Tile location.
-                UInt16 xDiff = Convert.ToUInt16(Math.Abs(_p2X - tile.X));
-                UInt16 yDiff = Convert.ToUInt16(Math.Abs(_p2Y - tile.Y));
+                ushort xDiff = Convert.ToUInt16(Math.Abs(_p2X - tile.X));
+                ushort yDiff = Convert.ToUInt16(Math.Abs(_p2Y - tile.Y));
 
                 // Checks if the player's Tile is next to the current Tile and if the current Tile hasn't been used.
                 if (xDiff <= 1 && yDiff <= 1 && tile.Enabled)

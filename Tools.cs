@@ -41,14 +41,16 @@ namespace MathTrix
         }
 
         // Checks if there are any available cells to move into.
-        private Boolean CheckForCells()
+        private bool CheckForCells(Tile[,]? board = null)
         {
-            Boolean availableCells = false;
-            Tile tile = _turn ? _tiles[_p1X, _p1Y] : _tiles[_p2X, _p2Y];
+            Tile[,] tiles = board ?? _tiles;
 
-            for (Int32 x = (Int32)(tile.X - 1); x < 2 + tile.X; ++x)
-                for (Int32 y = (Int32)(tile.Y - 1); y < 2 + tile.Y; ++y)
-                    try { availableCells = availableCells || _tiles[x, y].Enabled;}
+            bool availableCells = false;
+            Tile tile = _turn ? tiles[_p1X, _p1Y] : tiles[_p2X, _p2Y];
+
+            for (int x = (int)(tile.X - 1); x < 2 + tile.X; ++x)
+                for (int y = (int)(tile.Y - 1); y < 2 + tile.Y; ++y)
+                    try { availableCells = availableCells || tiles[x, y].Enabled;}
                     catch { availableCells = availableCells || false; }
 
             return availableCells;
