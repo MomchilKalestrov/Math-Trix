@@ -31,6 +31,7 @@ namespace MathTrix
         /// </summary>
         private void InitializeComponent()
         {
+            
             mainContainer = new SplitContainer();
             p2ScoreLabel = new Label();
             p1ScoreLabel = new Label();

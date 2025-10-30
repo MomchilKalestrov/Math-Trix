@@ -5,7 +5,7 @@ namespace MathTrix;
 
 public class AI
 {
-    public static Point Sigma()
+    public static Point GetBestOutcome(Window instance)
     {
         return new Point(0, 0);
     }
